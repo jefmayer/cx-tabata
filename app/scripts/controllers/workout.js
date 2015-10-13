@@ -1,7 +1,6 @@
 'use strict';
 
 /*global app */
-/*global storage */
 
 /**
  * @ngdoc function
@@ -11,8 +10,16 @@
  * Controller of the cxTabataApp
  */
 app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
-	$rootScope.data = storage.data.workouts[0];
+	if ($rootScope.data === undefined) {
+		$location.path('/setup');
+		return;
+	}
+	
 	$rootScope.isWorkout = true;
+	
+	$scope.isStarted = false;
+	$scope.isPaused = false;
+	$scope.isMousedown = false;
 	
 	$scope.interval = {
 		mins: '00',
@@ -32,6 +39,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	};
 	
 	var time = 0,
+		colorIter = 0,
 		initRun = true,
 		intBeginTime = 0,
 		timer,
@@ -40,8 +48,9 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		second = 1000,
 		minute = second * 60,
 		colors = [],
-		colorIter = 0,
 		timeLimit = $rootScope.data.time * second;
+		
+	updateTimerDisplays(timeLimit,0);
 		
 	function makeColorGradient(frequency1, frequency2, frequency3, phase1, phase2, phase3, center, width, len) {
 		if (center === undefined) {
@@ -87,14 +96,8 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 			} else {
 				rTime = (intBeginTime + intervalTime * second) - time;
 			}
-
-			$scope.total.mins = pad(Math.floor(time/minute));
-			$scope.total.secs = pad(Math.floor((time%minute)/second));
-			$scope.total.msecs = Math.floor((time%second))/100;
 			
-			$scope.interval.mins = pad(Math.floor(rTime/minute));
-			$scope.interval.secs = pad(Math.floor((rTime%minute)/second));
-			$scope.interval.msecs = Math.floor((rTime%second))/100;			
+			updateTimerDisplays(rTime, time);		
 			
 			if (time%10000 === 0) {
 				$rootScope.bgColor = colors[colorIter];
@@ -111,6 +114,16 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 			}
 		});
 	}
+	
+	function updateTimerDisplays(interval, total) {
+		$scope.total.mins = pad(Math.floor(total/minute));
+		$scope.total.secs = pad(Math.floor((total%minute)/second));
+		$scope.total.msecs = Math.floor((total%second))/100;
+		
+		$scope.interval.mins = pad(Math.floor(interval/minute));
+		$scope.interval.secs = pad(Math.floor((interval%minute)/second));
+		$scope.interval.msecs = Math.floor((interval%second))/100;		
+	}
 
 	function pad(val) {
 		val = val + '';
@@ -121,7 +134,45 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		}
 	}
 	
-	timer = setInterval(update, 100);
+	$scope.start = function() {
+		$scope.isStarted = true;
+		if ($scope.isStarted) {
+			timer = setInterval(update, 100);
+		}
+	};
+	
+	$scope.pause = function() {
+		if (timer !== null) {
+			clearInterval(timer);
+			timer = null;
+		} else {
+			timer = setInterval(update, 100);
+		}
+	};
+	
+	$scope.reset = function() {
+		if (timer !== null) {
+			time = 0;
+			colorIter = 0;
+			initRun = true;
+			intBeginTime = 0;
+			atInterval = 0;
+			intervalTime = 0;
+			clearInterval(timer);
+			timer = null;
+			updateTimerDisplays(0,0);
+		}
+	};
+	
+	$scope.onMousedown = function() {
+		if ($scope.isStarted) {
+			$scope.isMousedown = true;
+		}
+	};
+	
+	$scope.onMouseup = function() {
+		$scope.isMousedown = false;
+	};
 	
 	$scope.$on('$destroy', function() {
 		console.log('destroy');

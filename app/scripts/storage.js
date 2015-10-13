@@ -1,4 +1,18 @@
+'use strict';
+
 var storage = function storage() { };
+
+storage.getWorkoutById = function(id) {
+	var len = storage.data.workouts.length,
+		w;
+	for (var i = 0; i < len; i++) {
+		w = storage.data.workouts[i];
+		if (w.id === id) {
+			return w;
+		} 
+	}
+	return null;
+};
 
 storage.data = {
 	workouts: [

@@ -1,5 +1,10 @@
 <section id="workout-screen">
 	<h2>{{interval.mins}}<span class="colon">:</span>{{interval.secs}}<span class="colon">:</span>{{interval.msecs}}</h2>
-	<h3>Left on {{interval.desc}}</h3>
-	<h4>{{next.desc}} is next. <span style="color:{{bgColor}}">{{total.mins}}:{{total.secs}}:{{total.msecs}}</span></h4>
+	<h3>{{isStarted ? 'Left on ' + interval.desc : 'Start'}}</h3>
+	<h4>{{isStarted ? next.desc + ' is next.' : ''}} <span style="color:{{bgColor}}">{{total.mins}}:{{total.secs}}:{{total.msecs}}</span></h4>
+	<div id="workout-status-buttons" style="color:{{bgColor}}" ng-mousedown="onMousedown()" ng-mouseleave="onMouseup()" ng-class="{expand: isMousedown}">
+		<div id="workout-start-button" ng-class="{hide: isMousedown}" ng-click="start()"></div>
+		<div id="workout-pause-button" ng-class="{show: isMousedown}" ng-click="pause()"></div>
+		<div id="workout-reset-button" ng-class="{show: isMousedown}" ng-click="reset()"></div>
+	</div>
 </section>

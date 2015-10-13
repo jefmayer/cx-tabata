@@ -1,8 +1,8 @@
 <section id="setup-screen">
 	<article id="workout-list" ng-class="{hide : hideWorkoutList}">
 		<ul>
-			<li ng-click="loadWorkout('00')">
-				<span>My 30 minute Tabata training interval</span>
+			<li ng-repeat="item in workouts" ng-click="loadWorkout('{{item.id}}')">
+				<span>{{item.name}}</span>
 			</li>
 			<li ng-click="addWorkout()" id="add-workout-button">
 				<span>Add workout</span>

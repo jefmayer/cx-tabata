@@ -1,6 +1,7 @@
 'use strict';
 
 /*global app */
+/*global storage */
 
 /**
  * @ngdoc function
@@ -12,7 +13,7 @@
 app.controller('SetupCtrl', function ($scope, $rootScope, $location) {
 	$scope.hideWorkoutList = false;
 	
-	$rootScope.bgColor = 'rgba(200,200,200,1)';
+	$rootScope.bgColor = 'rgba(255,255,255,1)';
 	$rootScope.isWorkout = false;
 	
 	$scope.addWorkout = function() {
@@ -20,7 +21,8 @@ app.controller('SetupCtrl', function ($scope, $rootScope, $location) {
 	};
 	
 	$scope.loadWorkout = function(id) {
-		console.log('Load workout, ' + id);
+		// console.log('Load workout, ' + id);
+		$rootScope.data = storage.getWorkoutById(id);
 		$scope.hideWorkoutList = true;
 		var timer = setTimeout(function() {
 			clearTimeout(timer);

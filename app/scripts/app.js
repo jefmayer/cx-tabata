@@ -1,5 +1,7 @@
 'use strict';
 
+/*global storage */
+
 /**
  * @ngdoc overview
  * @name cxTabataApp
@@ -20,6 +22,7 @@ app.run(function($rootScope) {
 	// Init storage
 	// storage.init();
 	$rootScope.bgColor = 'rgba(200,200,200,1)';
+	$rootScope.workouts = storage.data.workouts;
 });
 
 app.config(function ($routeProvider) {
