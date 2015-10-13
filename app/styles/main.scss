@@ -1,0 +1,148 @@
+@import "partials/reset";
+
+body {
+	font-family: HelveticaNeue-Light, Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	background: rgba(200,200,200,1);
+	color: white;
+	
+	&.bgTransition {
+		-moz-transition: background 10s ease-in-out;
+		-webkit-transition: background 10s ease-in-out;
+		-o-transition: background 10s ease-in-out;
+		-ms-transition: background 10s ease-in-out;
+		transition: background 10s ease-in-out;
+	}
+}
+
+article {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	-moz-transition: all 0.15s ease-in-out;
+	-webkit-transition: all 0.15s ease-in-out;
+	-o-transition: all 0.15s ease-in-out;
+	-ms-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+	opacity: 1;
+	transform: scale(1);
+	background: #333;
+	
+	&.hide {
+		opacity: 0;
+		transform: scale(0.75);
+	}
+}
+
+#workout-list {
+	width: 100%;
+	
+	ul {
+		list-style-type: none;
+		
+		li {
+			display: block;
+			width: 100%;
+			float: left;
+			clear: both;
+			cursor: pointer;
+			
+			span {
+				color: white;
+				display: block;
+				width: 80%;
+				text-align: center;
+				margin: 0 10%;
+				padding: 20px 0;
+				border-bottom: 1px solid #aaa;
+			}
+			
+			&#add-workout-button {
+				background: black;
+				
+				span {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+}
+
+#workout-screen {
+	h2 {
+		font-family: HelveticaNeue-UltraLight, Helvetica, Arial, sans-serif;
+		font-weight: 100;
+		font-size: 250px;
+		text-align: center;
+		width: 100%;
+		margin: 0;
+		margin-top: 200px;
+		margin-bottom: 30px;
+		
+		.colon {
+			-moz-animation: blink normal 2s infinite ease-in-out;
+			-webkit-animation: blink normal 2s infinite ease-in-out;
+			-ms-animation: blink normal 2s infinite ease-in-out;
+			animation: blink normal 2s infinite ease-in-out;
+		}
+	}
+	
+	h3 {
+		font-family: HelveticaNeue-UltraLight, Helvetica, Arial, sans-serif;
+		font-weight: 100;
+		font-size: 80px;
+		text-align: center;
+		letter-spacing: 0.05em;
+		width: 100%;
+		margin: 0;
+		margin-top: -50px;
+		margin-bottom: 10px;
+	}
+	
+	h4 {
+		font-family: HelveticaNeue-UltraLight, Helvetica, Arial, sans-serif;
+		font-weight: 100;
+		font-size: 30px;
+		text-align: center;
+		letter-spacing: 0.05em;
+		width: 100%;
+		margin: 0;
+		margin-top: 0;
+		
+		span {
+			background: white;
+			border-radius: 50px;
+			padding: 0 10px;
+			-moz-transition: color 10s ease-in-out;
+			-webkit-transition: color 10s ease-in-out;
+			-o-transition: color 10s ease-in-out;
+			-ms-transition: color 10s ease-in-out;
+			transition: color 10s ease-in-out;
+		}
+	}
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-webkit-keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
