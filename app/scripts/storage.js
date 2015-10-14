@@ -17,45 +17,45 @@ storage.getWorkoutById = function(id) {
 storage.data = {
 	workouts: [
 		{
-			name: 'My 30 minute Tabata training interval',
+			name: 'My 30 minute tabata trainer',
 			id: '01',
 			time: 1800,	// all times in seconds
 			intervals: [
 				{
 					time: 420,
-					desc: '7 minutes easy.'	
+					desc: '7 minutes easy'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 60,
-					desc: 'Increase by one gear'	
+					desc: 'increase by one gear'	
 				},
 				{
 					time: 300,
@@ -63,67 +63,67 @@ storage.data = {
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 20,
-					desc: 'Tabata Intense'	
+					desc: 'tabata intense'	
 				},
 				{
 					time: 10,
-					desc: 'Tabata Recovery'	
+					desc: 'tabata recovery'	
 				},
 				{
 					time: 360,

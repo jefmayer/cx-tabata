@@ -20,6 +20,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	$scope.isStarted = false;
 	$scope.isPaused = false;
 	$scope.isMousedown = false;
+	$scope.workoutName = $rootScope.data.name;
 	
 	$scope.interval = {
 		mins: '00',
@@ -49,6 +50,16 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		minute = second * 60,
 		colors = [],
 		timeLimit = $rootScope.data.time * second;
+		
+	function updateTimerDisplays(interval, total) {
+		$scope.total.mins = pad(Math.floor(total/minute));
+		$scope.total.secs = pad(Math.floor((total%minute)/second));
+		$scope.total.msecs = Math.floor((total%second))/100;
+		
+		$scope.interval.mins = pad(Math.floor(interval/minute));
+		$scope.interval.secs = pad(Math.floor((interval%minute)/second));
+		$scope.interval.msecs = Math.floor((interval%second))/100;		
+	}
 		
 	updateTimerDisplays(timeLimit,0);
 		
@@ -83,6 +94,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 			intBeginTime = time;
 			$scope.$apply(function() {
 				$scope.interval.desc = $rootScope.data.intervals[atInterval].desc;
+				// If description doesn't exist, then display complete message...
 				$scope.next.desc = $rootScope.data.intervals[atInterval + 1].desc;
 			});
 			atInterval = atInterval + 1;
@@ -113,16 +125,6 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 				$location.path('/summary');
 			}
 		});
-	}
-	
-	function updateTimerDisplays(interval, total) {
-		$scope.total.mins = pad(Math.floor(total/minute));
-		$scope.total.secs = pad(Math.floor((total%minute)/second));
-		$scope.total.msecs = Math.floor((total%second))/100;
-		
-		$scope.interval.mins = pad(Math.floor(interval/minute));
-		$scope.interval.secs = pad(Math.floor((interval%minute)/second));
-		$scope.interval.msecs = Math.floor((interval%second))/100;		
 	}
 
 	function pad(val) {
@@ -160,7 +162,9 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 			intervalTime = 0;
 			clearInterval(timer);
 			timer = null;
-			updateTimerDisplays(0,0);
+			updateTimerDisplays(timeLimit,0);
+			$scope.isStarted = false;
+			$scope.isMousedown = false;
 		}
 	};
 	
@@ -178,6 +182,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		console.log('destroy');
 		if (timer !== null) {
 			clearInterval(timer);
+			timer = null;
 		}
 	});
 });
