@@ -150,6 +150,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		} else {
 			timer = setInterval(update, 100);
 		}
+		$scope.isMousedown = false;
 	};
 	
 	$scope.reset = function() {
