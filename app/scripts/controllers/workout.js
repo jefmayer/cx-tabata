@@ -19,7 +19,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	
 	$scope.isStarted = false;
 	$scope.isPaused = false;
-	$scope.isMousedown = false;
+	$scope.isMouseover = false;
 	$scope.workoutName = $rootScope.data.name;
 	
 	$scope.interval = {
@@ -150,7 +150,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		} else {
 			timer = setInterval(update, 100);
 		}
-		$scope.isMousedown = false;
+		$scope.isMouseover = false;
 	};
 	
 	$scope.reset = function() {
@@ -165,18 +165,18 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 			timer = null;
 			updateTimerDisplays(timeLimit,0);
 			$scope.isStarted = false;
-			$scope.isMousedown = false;
+			$scope.isMouseover = false;
 		}
 	};
 	
 	$scope.onMousedown = function() {
 		if ($scope.isStarted) {
-			$scope.isMousedown = true;
+			$scope.isMouseover = true;
 		}
 	};
 	
-	$scope.onMouseup = function() {
-		$scope.isMousedown = false;
+	$scope.onMouseleave = function() {
+		$scope.isMouseover = false;
 	};
 	
 	$scope.$on('$destroy', function() {
