@@ -110,6 +110,15 @@ article {
 		letter-spacing: 0.05em;
 		width: 100%;
 		margin-top: 0;
+		opacity: 0;
+		@include transition-property(opacity);
+		@include transition-duration(0.25s);
+		@include transition-delay(0s);
+		@include transition-timing-function(ease-in-out);
+		
+		&.show {
+			opacity: 1;
+		}
 		
 		span {
 			background: white;

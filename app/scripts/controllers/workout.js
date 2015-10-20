@@ -40,7 +40,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	};
 	
 	var time = 0,
-		colorIter = 0,
+		colorIter = $rootScope.data.colorStart,
 		initRun = true,
 		intBeginTime = 0,
 		timer,
@@ -82,7 +82,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	}
 	
 	makeColorGradient(0.3,0.3,0.3,0,2,4);
-	$rootScope.bgColor = colors[0];
+	$rootScope.bgColor = colors[$rootScope.data.colorStart];
 			
 	function update() {
 		time = time + 100;
@@ -137,17 +137,21 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	}
 	
 	$scope.start = function() {
+		console.log('$scope.isPaused: ' + $scope.isPaused);
 		$scope.isStarted = true;
-		if ($scope.isStarted) {
+		if ($scope.isStarted || $scope.isPaused) {
+			$scope.isPaused = false;
 			timer = setInterval(update, 100);
 		}
 	};
 	
 	$scope.pause = function() {
 		if (timer !== null) {
+			$scope.isPaused = true;
 			clearInterval(timer);
 			timer = null;
 		} else {
+			$scope.isPaused = false;
 			timer = setInterval(update, 100);
 		}
 		$scope.isMouseover = false;
@@ -156,7 +160,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	$scope.reset = function() {
 		if (timer !== null) {
 			time = 0;
-			colorIter = 0;
+			colorIter = $rootScope.data.colorStart;
 			initRun = true;
 			intBeginTime = 0;
 			atInterval = 0;
@@ -171,7 +175,9 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	
 	$scope.onMousedown = function() {
 		if ($scope.isStarted) {
-			$scope.isMouseover = true;
+			if (!$scope.isPaused) {
+				$scope.isMouseover = true;
+			}
 		}
 	};
 	
