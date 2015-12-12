@@ -99,9 +99,9 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 				$scope.interval.desc = $rootScope.data.intervals[atInterval].desc;
 				// If description doesn't exist, then display complete message...
 				if ($rootScope.data.intervals[atInterval + 1] === undefined) {
-					$scope.next.desc = 'training complete';	
+					$scope.next.desc = 'Training complete';	
 				} else {
-					$scope.next.desc = $rootScope.data.intervals[atInterval + 1].desc + ' is next';	
+					$scope.next.desc = capitalizeFirstLetter($rootScope.data.intervals[atInterval + 1].desc) + ' is next';	
 				}
 			});
 			atInterval = atInterval + 1;
@@ -141,6 +141,10 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		} else {
 			return val;
 		}
+	}
+	
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 	
 	function startCountdown() {

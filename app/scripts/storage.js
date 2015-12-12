@@ -17,26 +17,6 @@ storage.getWorkoutById = function(id) {
 storage.data = {
 	workouts: [
 		{
-			name: 'Test',
-			id: '00',
-			colorStart: 0,
-			time: 6,	// all times in seconds
-			intervals: [
-				{
-					time: 2,
-					desc: 'first segment'	
-				},
-				{
-					time: 2,
-					desc: 'second segment'	
-				},
-				{
-					time: 2,
-					desc: 'third segment'	
-				}
-			]
-		},
-		{
 			name: 'My 30 minute tabata trainer',
 			id: '01',
 			colorStart: 0,
