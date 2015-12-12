@@ -71,8 +71,45 @@ article {
 	}
 }
 
+#summary-screen {
+	text-align: center;
+	
+	h1 {
+		font-family: HelveticaNeue-UltraLight, Helvetica, Arial, sans-serif;
+		font-weight: 100;
+		font-size: 120px;
+		text-align: center;
+		width: 100%;
+		margin-top: 150px;
+		margin-bottom: 30px;
+	}
+	
+	a {
+		
+	}
+}
+
 #workout-screen {
 	text-align: center;
+	
+	.countdown-overlay {
+		display: none;
+		background: rgba(0,0,0,.85);
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+		
+		h2 {
+			font-size: 400px;
+		}
+		
+		&.show {
+			display: block;
+		}
+	}
 	
 	h2 {
 		font-family: HelveticaNeue-UltraLight, Helvetica, Arial, sans-serif;

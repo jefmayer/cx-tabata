@@ -21,6 +21,8 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	$scope.isPaused = false;
 	$scope.isMouseover = false;
 	$scope.workoutName = $rootScope.data.name;
+	$scope.countdownAt = 5;
+	$scope.countdownStarted = false;
 	
 	$scope.interval = {
 		mins: '00',
@@ -49,6 +51,7 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		second = 1000,
 		minute = second * 60,
 		colors = [],
+		countdownComplete = false,
 		timeLimit = $rootScope.data.time * second;
 		
 	function updateTimerDisplays(interval, total) {
@@ -90,12 +93,16 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		if (time === intBeginTime + intervalTime * second || initRun) {
 			initRun = false;
 			intervalTime = parseInt($rootScope.data.intervals[atInterval].time);
-			
+		
 			intBeginTime = time;
 			$scope.$apply(function() {
 				$scope.interval.desc = $rootScope.data.intervals[atInterval].desc;
 				// If description doesn't exist, then display complete message...
-				$scope.next.desc = $rootScope.data.intervals[atInterval + 1].desc;
+				if ($rootScope.data.intervals[atInterval + 1] === undefined) {
+					$scope.next.desc = 'training complete';	
+				} else {
+					$scope.next.desc = $rootScope.data.intervals[atInterval + 1].desc + ' is next';	
+				}
 			});
 			atInterval = atInterval + 1;
 		}
@@ -136,12 +143,38 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		}
 	}
 	
+	function startCountdown() {
+		// Five sec countdown
+		$scope.countdownStarted = true;
+		var i = 5;
+		var cdTimer = setInterval(function() {
+			i = i - 1;
+			if (i === 0) { 
+				clearInterval(cdTimer);
+				countdownComplete = true;
+				$scope.countdownStarted = false;
+				startTimer();
+			} else {
+				$scope.$apply(function() {
+					$scope.countdownAt = i;
+				});
+			}
+		}, 1000);
+	}
+	
+	function startTimer() {
+		timer = setInterval(update, 100);
+	}
+	
 	$scope.start = function() {
-		console.log('$scope.isPaused: ' + $scope.isPaused);
 		$scope.isStarted = true;
 		if ($scope.isStarted || $scope.isPaused) {
 			$scope.isPaused = false;
-			timer = setInterval(update, 100);
+			if (!countdownComplete) {
+				startCountdown();
+			} else {
+				startTimer();
+			}
 		}
 	};
 	
