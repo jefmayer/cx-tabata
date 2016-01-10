@@ -25,13 +25,19 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 	$scope.countdownStarted = false;
 	
 	$scope.interval = {
+		isHours: false,
+		hours: '00',
 		mins: '00',
 		secs: '00',
 		msecs: '0',
-		desc: ''
+		desc: '',
+		gearing: '',
+		cadence: ''
 	};
 	
 	$scope.total = {
+		isHours: false,
+		hours: '00',
 		mins: '00',
 		secs: '00',
 		msecs: '0'	
@@ -55,11 +61,27 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		timeLimit = $rootScope.data.time * second;
 		
 	function updateTimerDisplays(interval, total) {
-		$scope.total.mins = pad(Math.floor(total/minute));
+		$scope.total.mins = Math.floor(total/minute);
+		if ($scope.total.mins > 60) {
+			$scope.total.isHours = true;
+			$scope.total.hours = pad(Math.floor($scope.total.mins / 60));
+			$scope.total.mins = $scope.total.mins - ($scope.total.hours * 60);
+		} else {
+			$scope.total.isHours = false;
+		}
+		$scope.total.mins = pad($scope.total.mins);
 		$scope.total.secs = pad(Math.floor((total%minute)/second));
 		$scope.total.msecs = Math.floor((total%second))/100;
 		
-		$scope.interval.mins = pad(Math.floor(interval/minute));
+		$scope.interval.mins = Math.floor(interval/minute);
+		if ($scope.interval.mins > 60) {
+			$scope.interval.isHours = true;
+			$scope.interval.hours = pad(Math.floor($scope.interval.mins / 60));
+			$scope.interval.mins = $scope.interval.mins - ($scope.interval.hours * 60);
+		} else {
+			$scope.interval.isHours = false;
+		}
+		$scope.interval.mins = pad($scope.interval.mins);
 		$scope.interval.secs = pad(Math.floor((interval%minute)/second));
 		$scope.interval.msecs = Math.floor((interval%second))/100;		
 	}
@@ -97,6 +119,8 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 			intBeginTime = time;
 			$scope.$apply(function() {
 				$scope.interval.desc = $rootScope.data.intervals[atInterval].desc;
+				$scope.interval.gearing = $rootScope.data.intervals[atInterval].gearing;
+				$scope.interval.cadence = $rootScope.data.intervals[atInterval].cadence;
 				// If description doesn't exist, then display complete message...
 				if ($rootScope.data.intervals[atInterval + 1] === undefined) {
 					$scope.next.desc = 'Training complete';	

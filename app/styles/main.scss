@@ -92,6 +92,18 @@ article {
 #workout-screen {
 	text-align: center;
 	
+	.bike-settings {
+		width: 300px;
+		height: 50px;
+		background: black;
+		color: white;
+		margin: 0 auto;
+		
+		table {
+			width: 100%;
+		}
+	}
+	
 	.countdown-overlay {
 		display: none;
 		background: rgba(0,0,0,.85);
@@ -225,12 +237,23 @@ article {
 			@include transition-timing-function(ease-in-out);
 		}
 		
+		
 		.ng-hide {
 			opacity: 0;
 		}
 		
 		.ng-show {
 			opacity: 1;
+		}
+	}
+	
+	.hours-display {
+		padding: 0;
+		
+		display: none;
+		
+		&.show {
+			display: inline;
 		}
 	}
 }

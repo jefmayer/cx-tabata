@@ -415,6 +415,44 @@ storage.data = {
 					desc: '5 minutes easy'	
 				}
 			]
+		},
+		{
+			name: 'PWP Intersity Workout #3',
+			id: '03',
+			colorStart: 5,
+			time: 7200,	// all times in seconds
+			intervals: [
+				{
+					time: 300,
+					desc: 'endurance',
+					gearing: 'any',
+					cadence: '100-110'
+				},
+				{
+					time: 1800,
+					desc: 'tempo',
+					gearing: 'any',
+					cadence: '100-110'	
+				},
+				{
+					time: 120,
+					desc: 'left leg only',
+					gearing: '39/17',
+					cadence: '40-60'
+				},
+				{
+					time: 120,
+					desc: 'right leg only',
+					gearing: '39/17',
+					cadence: '40-60'
+				},
+				{
+					time: 120,
+					desc: 'both legs recovery',
+					gearing: '39/17',
+					cadence: '80-100'
+				}
+			]
 		}
 	]
 };

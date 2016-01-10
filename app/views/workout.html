@@ -1,8 +1,24 @@
 <section id="workout-screen">
+	<div class="bike-settings">
+		<table>
+			<thead>
+				<tr>
+					<th>Gearing</th>
+					<th>Cadence</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="gearing">{{interval.gearing}}</td>
+					<td class="cadence">{{interval.cadence}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div ng-class="{show: countdownStarted}" class="countdown-overlay"><h2>{{countdownAt}}</h2></div>
-	<h2>{{interval.mins}}<span ng-class="{colon: isStarted}">:</span>{{interval.secs}}<span ng-class="{colon: isStarted}">:</span>{{interval.msecs}}</h2>
+	<h2><span class="hours-display" ng-class="{show: interval.isHours}">{{interval.hours}}<span ng-class="{colon: isStarted}">:</span></span>{{interval.mins}}<span ng-class="{colon: isStarted}">:</span>{{interval.secs}}<span ng-class="{colon: isStarted}">:</span>{{interval.msecs}}</h2>
 	<h3>{{isStarted ? 'Left on ' + interval.desc : workoutName}}</h3>
-	<h4 ng-class="{show: isStarted}">{{next.desc}} <span style="color:{{bgColor}}">{{total.mins}}:{{total.secs}}:{{total.msecs}}</span></h4>
+	<h4 ng-class="{show: isStarted}">{{next.desc}} <span style="color:{{bgColor}}"><span class="hours-display" ng-class="{show: interval.isHours}">{{total.hours}}:</span>{{total.mins}}:{{total.secs}}:{{total.msecs}}</span></h4>
 	<div id="workout-status-buttons" style="color:{{bgColor}}" ng-mousedown="onMousedown()" ng-mouseleave="onMouseleave()" ng-class="{expand: isMouseover}">
 		<div id="workout-start-button" class="app-control-button" ng-hide="isMouseover" ng-click="start()"></div>
 		<div id="workout-pause-button" class="app-control-button" ng-show="isMouseover" ng-click="pause()"></div>
