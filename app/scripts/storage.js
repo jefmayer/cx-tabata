@@ -518,8 +518,130 @@ storage.data = {
 					desc: 'recovery',
 					gearing: '39/17',
 					cadence: '90+'
-				}
+				},
 // ---------------------------------------------------------------------------------
+				{
+					time: 180,
+					desc: 'tempo',
+					gearing: '39/16',
+					cadence: '100'
+				},
+				{
+					time: 40,
+					desc: 'on',
+					gearing: '39/15',
+					cadence: '100+'
+				},
+				{
+					time: 20,
+					desc: 'off',
+					gearing: '39/15',
+					cadence: '90'
+				},
+				{
+					time: 60,
+					desc: 'sprint',
+					gearing: '39/14',
+					cadence: '100'
+				},
+				{
+					time: 180,
+					desc: 'tempo',
+					gearing: '39/16',
+					cadence: '100'
+				},
+				{
+					time: 40,
+					desc: 'on',
+					gearing: '39/15',
+					cadence: '100+'
+				},
+				{
+					time: 20,
+					desc: 'off',
+					gearing: '39/15',
+					cadence: '90'
+				},
+				{
+					time: 60,
+					desc: 'sprint',
+					gearing: '39/14',
+					cadence: '100'
+				},
+				{
+					time: 180,
+					desc: 'tempo',
+					gearing: '39/16',
+					cadence: '100'
+				},
+				{
+					time: 40,
+					desc: 'on',
+					gearing: '39/15',
+					cadence: '100+'
+				},
+				{
+					time: 20,
+					desc: 'off',
+					gearing: '39/15',
+					cadence: '90'
+				},
+				{
+					time: 60,
+					desc: 'sprint',
+					gearing: '39/14',
+					cadence: '100'
+				},
+// ---------------------------------------------------------------------------------
+				{
+					time: 300,
+					desc: 'recovery',
+					gearing: '39/17',
+					cadence: '90+'
+				},
+// ---------------------------------------------------------------------------------
+				{
+					time: 60,
+					desc: 'sprint',
+					gearing: '39/16',
+					cadence: '100'
+				},
+				{
+					time: 180,
+					desc: 'tempo',
+					gearing: '53/17',
+					cadence: '100'
+				},
+				{
+					time: 60,
+					desc: 'sprint',
+					gearing: '39/16',
+					cadence: '100'
+				},
+				{
+					time: 180,
+					desc: 'tempo',
+					gearing: '53/17',
+					cadence: '100'
+				},
+				{
+					time: 300,
+					desc: 'recovery',
+					gearing: 'ANY',
+					cadence: '90+'
+				},
+				{
+					time: 720,
+					desc: 'threshold',
+					gearing: 'ANY',
+					cadence: '80'
+				},
+				{
+					time: 300,
+					desc: 'recovery',
+					gearing: '39/17',
+					cadence: 'ANY'
+				}
 			]
 		}
 	]

@@ -52,20 +52,21 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		initRun = true,
 		intBeginTime = 0,
 		timer,
+		secsInMin = 60,
 		atInterval = 0,
 		intervalTime = 0,
 		second = 1000,
-		minute = second * 60,
+		minute = second * secsInMin,
 		colors = [],
 		countdownComplete = false,
 		timeLimit = $rootScope.data.time * second;
 		
 	function updateTimerDisplays(interval, total) {
 		$scope.total.mins = Math.floor(total/minute);
-		if ($scope.total.mins > 60) {
+		if ($scope.total.mins > secsInMin) {
 			$scope.total.isHours = true;
-			$scope.total.hours = pad(Math.floor($scope.total.mins / 60));
-			$scope.total.mins = $scope.total.mins - ($scope.total.hours * 60);
+			$scope.total.hours = pad(Math.floor($scope.total.mins / secsInMin));
+			$scope.total.mins = $scope.total.mins - ($scope.total.hours * secsInMin);
 		} else {
 			$scope.total.isHours = false;
 		}
@@ -74,10 +75,10 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 		$scope.total.msecs = Math.floor((total%second))/100;
 		
 		$scope.interval.mins = Math.floor(interval/minute);
-		if ($scope.interval.mins > 60) {
+		if ($scope.interval.mins > secsInMin) {
 			$scope.interval.isHours = true;
-			$scope.interval.hours = pad(Math.floor($scope.interval.mins / 60));
-			$scope.interval.mins = $scope.interval.mins - ($scope.interval.hours * 60);
+			$scope.interval.hours = pad(Math.floor($scope.interval.mins / secsInMin));
+			$scope.interval.mins = $scope.interval.mins - ($scope.interval.hours * secsInMin);
 		} else {
 			$scope.interval.isHours = false;
 		}
@@ -123,9 +124,12 @@ app.controller('WorkoutCtrl', function ($scope, $rootScope, $location) {
 				$scope.interval.cadence = $rootScope.data.intervals[atInterval].cadence;
 				// If description doesn't exist, then display complete message...
 				if ($rootScope.data.intervals[atInterval + 1] === undefined) {
-					$scope.next.desc = 'Training complete';	
+					$scope.next.desc = 'Training complete';
 				} else {
-					$scope.next.desc = capitalizeFirstLetter($rootScope.data.intervals[atInterval + 1].desc) + ' is next';	
+					$scope.next.desc = capitalizeFirstLetter($rootScope.data.intervals[atInterval + 1].desc) +
+					' (' + $rootScope.data.intervals[atInterval + 1].gearing + '/' +
+					$rootScope.data.intervals[atInterval + 1].cadence  +
+					 ') is next';
 				}
 			});
 			atInterval = atInterval + 1;
