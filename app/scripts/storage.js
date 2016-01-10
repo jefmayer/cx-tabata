@@ -425,13 +425,13 @@ storage.data = {
 				{
 					time: 300,
 					desc: 'endurance',
-					gearing: 'any',
+					gearing: 'ANY',
 					cadence: '100-110'
 				},
 				{
 					time: 1800,
 					desc: 'tempo',
-					gearing: 'any',
+					gearing: 'ANY',
 					cadence: '100-110'	
 				},
 				{
@@ -451,7 +451,75 @@ storage.data = {
 					desc: 'both legs recovery',
 					gearing: '39/17',
 					cadence: '80-100'
+				},
+				{
+					time: 120,
+					desc: 'left leg only',
+					gearing: '39/19',
+					cadence: '80-100'
+				},
+				{
+					time: 120,
+					desc: 'right leg only',
+					gearing: '39/19',
+					cadence: '80-100'
+				},
+				{
+					time: 240,
+					desc: 'both legs recovery',
+					gearing: '39/19',
+					cadence: '80-100'
+				},
+// ---------------------------------------------------------------------------------
+				{
+					time: 60,
+					desc: 'tempo',
+					gearing: '53/16',
+					cadence: '100'
+				},
+				{
+					time: 120,
+					desc: 'tempo',
+					gearing: '53/17',
+					cadence: '100'
+				},
+				{
+					time: 180,
+					desc: 'tempo',
+					gearing: '53/19',
+					cadence: '100'
+				},
+				{
+					time: 240,
+					desc: 'tempo',
+					gearing: '53/21',
+					cadence: '100'
+				},
+				{
+					time: 180,
+					desc: 'tempo',
+					gearing: '53/19',
+					cadence: '100'
+				},
+				{
+					time: 120,
+					desc: 'tempo',
+					gearing: '53/17',
+					cadence: '100'
+				},
+				{
+					time: 60,
+					desc: 'tempo',
+					gearing: '53/16',
+					cadence: '100'
+				},
+				{
+					time: 300,
+					desc: 'recovery',
+					gearing: '39/17',
+					cadence: '90+'
 				}
+// ---------------------------------------------------------------------------------
 			]
 		}
 	]
